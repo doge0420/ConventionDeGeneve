@@ -1,0 +1,1 @@
+class jeu(self,difficuty,player)
