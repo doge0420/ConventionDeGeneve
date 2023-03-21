@@ -1,1 +1,4 @@
-class jeu(self,difficuty,player)
+class jeu(self,difficuty,v1orBot):
+
+
+        
