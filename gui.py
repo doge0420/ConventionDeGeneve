@@ -2,7 +2,8 @@ class GUI:
 
     def __init__(self):
         self.load_ascii()
-    
+        # appeler les fonctions
+
     def load_ascii(self):
         with open("title.txt", "r", encoding="utf-8") as f:
             print(f.read())
