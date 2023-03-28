@@ -1,4 +1,8 @@
-class jeu:
+import gui
+import parties
+import player
+
+class jeu(gui, parties, player):
     def __init__(self):
         self.least_used_letters = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
 
@@ -11,8 +15,6 @@ class jeu:
                 bonus += 2
 
         return lenght + bonus
-
-    def 
 
 if __name__ == "__main__":
     game = jeu()
