@@ -32,6 +32,11 @@ class GUI:
 
             if choix_gm == "2":
                 n_difficulty = input("difficulté des mots? (1/2/3)")
+                if n_difficulty == "1" or "2" or "3":
+                    difficulty = n_difficulty
+                else:
+                    difficulty = difficulty
+                    print(bruh)
                 
 
 
