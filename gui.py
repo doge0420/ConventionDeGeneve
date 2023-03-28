@@ -30,7 +30,7 @@ class GUI:
                 players = players
                 print(bruh)
 
-            elif choix_gm == "2":
+            if choix_gm == "2":
                 n_difficulty = input("difficulté des mots? (1/2/3)")
                 
 
