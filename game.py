@@ -1,9 +1,18 @@
 class jeu:
     def __init__(self):
-        pass
+        self.least_used_letters = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
 
     def word_difficulty(self, word):
         lenght = len(word)
 
+        bonus = 0
+        for letter in word:
+            if letter in self.least_used_letters:
+                bonus += 2
 
-# https://scriptingosx.com/2020/03/macos-shell-command-to-create-a-new-terminal-window/
+        return lenght + bonus
+
+    def 
+
+if __name__ == "__main__":
+    game = jeu()

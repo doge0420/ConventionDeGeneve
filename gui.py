@@ -46,7 +46,7 @@ class GUI:
         else:
             print("soulja boy est le premier rappeur avec un iphone")
 
-
+    
 
 
         
