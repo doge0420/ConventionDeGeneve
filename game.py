@@ -4,6 +4,8 @@ import player
 
 class jeu(gui, parties, player):
     def __init__(self):
+        super.__init__()
+
         self.least_used_letters = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
 
     def word_difficulty(self, word):
