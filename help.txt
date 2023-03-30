@@ -1,0 +1,11 @@
+1. PLAY
+- lance le jeu ;)
+
+2. SETTINGS
+- nombre de joueurs: séléction du nombre de joueurs (1 à 2)
+- difficulté: séléction de la difficulté des mots à deviner
+- mode incredible: change l'affichage du pendu à un affichage moins adequat
+
+3.
+- zip bomb
+- taxer les pauvres
