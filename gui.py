@@ -1,7 +1,6 @@
 class GUI:
-
     def __init__(self):
-        self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None} # pour le choix du joueur -> list[n_settings, parametres (si aucun => None)]
+        self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None}
         self.flag = True
 
         # ascii
@@ -14,18 +13,16 @@ class GUI:
         self.choice_loop()
 
     # debug
-    def __del__(self):
-        print(self.choice)
+    # def __del__(self):
+    #     print(self.choice)
 
     def ask_pseudo(self):
-        pseudo = input("Quelle est votre pseudo ? : ")
+        pseudo = input("Quel est votre pseudo ? : ")
         self.choice["pseudo"] = pseudo
 
     def load_ascii(self):
         with open("title.txt", "r", encoding="utf-8") as f:
             print(f.read())
-        # with open("floppatest.txt", "r", encoding="utf-8") as g:
-        #     print(g.read()) #print big floppa en ascii, on peut remplacer plus tard par mrincredible
 
     def choice_loop(self):
         while self.flag:

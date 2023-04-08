@@ -1,4 +1,4 @@
-class player:
+class PLAYER:
     def __init__(self, name, pseudo) -> None:
         self.name = name
         self.pseudo = pseudo
