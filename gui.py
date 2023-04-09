@@ -3,32 +3,35 @@ class GUI:
         self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None}
         self.flag = True
 
-        # ascii
-        self.load_ascii()
-
-        # ask pseudo
-        self.ask_pseudo()
-
-        # loop du choix
-        self.choice_loop()
-
     # debug
     # def __del__(self):
     #     print(self.choice)
 
-    def ask_pseudo(self):
+    def menu(self):
+        # ascii
+        self._load_ascii()
+
+        # ask pseudo
+        self._ask_pseudo()
+
+        # loop du choix
+        self._choice_loop()
+        
+        return self.choice
+
+    def _ask_pseudo(self):
         pseudo = input("Quel est votre pseudo ? : ")
         self.choice["pseudo"] = pseudo
 
-    def load_ascii(self):
+    def _load_ascii(self):
         with open("title.txt", "r", encoding="utf-8") as f:
             print(f.read())
 
-    def choice_loop(self):
+    def _choice_loop(self):
         while self.flag:
-            self.get_choice()
+            self._get_choice()
 
-    def get_choice(self):
+    def _get_choice(self):
         choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\nVotre choix : ")
 
         if choice == "1":
@@ -36,7 +39,7 @@ class GUI:
             self.flag = False
 
         elif choice == "2":
-            self.get_settings()
+            self._get_settings()
 
         elif choice == "3":
             ... # print un document qui aide
@@ -44,7 +47,7 @@ class GUI:
         else:
             print("\nNumero invalide\n")
 
-    def get_settings(self):
+    def _get_settings(self):
         setting = input("1.NOMBRE DE JOUEURS ([1])([2]) \n2.DIFFICULTE ([1])([2])([3]) \n3.MODE INCREDIBLE ([n])([y])\n4.ARRIERE\nChoix du reglage : ")
 
         if setting == "1":
@@ -73,10 +76,10 @@ class GUI:
                 print("#dilexyies")
 
         elif setting == "4":
-            self.get_choice()
+            self._get_choice()
 
         else:
             print("\nNumero invalide\n")
 
 if __name__ == "__main__": 
-    ok = GUI()
+    gui = GUI()

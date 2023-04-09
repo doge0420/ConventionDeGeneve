@@ -10,9 +10,9 @@ class PARTIES:
     def choose_word(self):
         with open("words.txt", "r") as f:
             words = f.readlines()
-            
+
         return choice(words).strip()
-        
+
     def word_difficulty(self, word):
         lenght = len(word)
 
