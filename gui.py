@@ -1,11 +1,16 @@
+import os
+
 class GUI:
     def __init__(self):
         self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None}
         self.flag = True
 
     # debug
-    # def __del__(self):
-    #     print(self.choice)
+    def __del__(self):
+        print(self.choice)
+
+    # menu
+    ############################
 
     def menu(self):
         # ascii
@@ -19,6 +24,10 @@ class GUI:
         
         return self.choice
 
+    def _refresh_screen_menu(self):
+        self.clear_screen()
+        self._load_ascii()
+
     def _ask_pseudo(self):
         pseudo = input("Quel est votre pseudo ? : ")
         self.choice["pseudo"] = pseudo
@@ -29,6 +38,7 @@ class GUI:
 
     def _choice_loop(self):
         while self.flag:
+            self._refresh_screen_menu()
             self._get_choice()
 
     def _get_choice(self):
@@ -39,6 +49,7 @@ class GUI:
             self.flag = False
 
         elif choice == "2":
+            self._refresh_screen_menu()
             self._get_settings()
 
         elif choice == "3":
@@ -76,10 +87,31 @@ class GUI:
                 print("#dilexyies")
 
         elif setting == "4":
+            self._refresh_screen_menu()
             self._get_choice()
 
         else:
             print("\nNumero invalide\n")
 
+    ############################
+    
+    @staticmethod
+    def clear_screen():
+        if os.name == "nt": #windows
+            os.system("cls")
+        elif os.name == "posix": #linux && mac
+            os.system("clear")
+        else:
+            print("OS non supporté")
+    
+    # jeu
+    ############################
+    
+    def display_word_guess(self, word):
+        self.clear_screen()
+        
+        lenght = len(word)
+        print("\n\n\n" + "_ " * lenght + "\n\n\n")
+        
 if __name__ == "__main__": 
     gui = GUI()
