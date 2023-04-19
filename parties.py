@@ -29,7 +29,7 @@ class PARTIES:
 
         bonus = 0
         for letter in word:
-            if letter in self.LEAST_USED_LETTERS
+            if letter in self.LEAST_USED_LETTERS:
                 bonus += 2
 
         return lenght + bonus
