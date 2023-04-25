@@ -106,12 +106,6 @@ class GUI:
     
     # jeu
     ############################
-    
-    def display_word_guess(self, word):
-        self.clear_screen()
-        
-        lenght = len(word)
-        print("\n\n\n" + "_ " * lenght + "\n\n\n")
         
 if __name__ == "__main__": 
     gui = GUI()
