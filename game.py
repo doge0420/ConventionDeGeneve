@@ -1,16 +1,20 @@
 from gui import GUI
 from random import choice
-from itertools import repeat
+from string import ascii_lowercase, ascii_uppercase
+from time import sleep
 
 class GAME(GUI):
     def __init__(self):
         super().__init__()
         
         self.LEAST_USED_LETTERS = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
-        
+        self.run = True
+        self.guesses = []
+        self.bad_guess = []
+
         self.menu()
-        
-        self.display_word_guess(self._choose_word())
+
+        self.game_loop()
         
     def _choose_word(self, debug = False):
         with open("words.txt", "r") as f:
@@ -18,18 +22,10 @@ class GAME(GUI):
 
         word = choice(words).strip()
 
-        self._word_preprocess(word)
-
         if debug:
             print(word)
 
-        return word
-
-    def _word_preprocess(self, word):
-        key = [i for i in word] # conversion du mot en liste de lettres
-        values = repeat(False, len(word))
-        
-        self.word_dict = dict(zip(key, values))
+        return [i for i in word]
 
     def _word_difficulty(self, word):
         lenght = len(word)
@@ -41,17 +37,28 @@ class GAME(GUI):
 
         return lenght + bonus
 
-    def display_word_guess(self, word):
-        self.clear_screen()
+    def game_loop(self):
+        word_list = self._choose_word()
         
-        res = ""
-        for letter in self.word_dict.keys():
-            if self.word_dict[letter]:
-                res += letter + " "
-            else:
-                res += "_ "
+        while self.run:
+            self.clear_screen()
+            self.display_word_guess(word_list, self.guesses, self.bad_guess)
 
-        print(f"\n\n{res}\n\n")
+            guess_input = input("Veuillez choisir une lettre : ")
+            
+            if len(guess_input) == 1 and (guess_input in ascii_lowercase or guess_input in ascii_uppercase):
+                guess_input = guess_input.lower()
+                if guess_input in word_list:
+                    self.guesses.append(guess_input)
+                    print("Bonne lettre :)")
+                else:
+                    self.bad_guess.append(guess_input)
+                    print("Mauvaise lettre :(")
+            else:
+                print("Veuillez entrez une lettre.")
+
+            sleep(1.5)
 
 if __name__ == "__main__":
-    PARTIES()
+    GAME()
+    print("ok")

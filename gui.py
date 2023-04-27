@@ -107,5 +107,26 @@ class GUI:
     # jeu
     ############################
         
+    def display_word_guess(self, word : list, guesses : list, bad_guesses : list):
+        self.clear_screen()
+
+        print("\n\n\n\t\t\t", end="")
+
+        for word_letter in word:
+            if word_letter in guesses:
+                print(word_letter, end="")
+            else:
+                print("*", end="")
+
+        print("\n\n")
+
+        print("\t\t\t", end="")
+
+        # afficher a gauche ce que c'est
+        for bad_guess in bad_guesses:
+            print(f"{bad_guess}", end="")
+
+        print("\n\n\n")
+
 if __name__ == "__main__": 
     gui = GUI()
