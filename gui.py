@@ -107,10 +107,12 @@ class GUI:
     # jeu
     ############################
         
-    def display_word_guess(self, word : list, guesses : list, bad_guesses : list):
+    def display_word_guess(self, word : list, guesses : list, bad_guesses : list, word_diff : int):
         self.clear_screen()
 
-        print("\n\n\n\t\t\t", end="")
+        print("\n\n\n")
+
+        print(f"\tMot à deviner : \t", end="")
 
         for word_letter in word:
             if word_letter in guesses:
@@ -120,11 +122,14 @@ class GUI:
 
         print("\n\n")
 
-        print("\t\t\t", end="")
+        print(f"\tDifficulté : \t{word_diff}", end="")
 
-        # afficher a gauche ce que c'est
+        print("\n\n")
+
+        print("\tLettres fausses : \t", end="")
+
         for bad_guess in bad_guesses:
-            print(f"{bad_guess}", end="")
+            print(f"{bad_guess}", end=" ")
 
         print("\n\n\n")
 

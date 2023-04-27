@@ -40,9 +40,11 @@ class GAME(GUI):
     def game_loop(self):
         word_list = self._choose_word()
         
+        word_diff = self._word_difficulty(word_list)
+        
         while self.run:
             self.clear_screen()
-            self.display_word_guess(word_list, self.guesses, self.bad_guess)
+            self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
 
             guess_input = input("Veuillez choisir une lettre : ")
             
@@ -61,4 +63,3 @@ class GAME(GUI):
 
 if __name__ == "__main__":
     GAME()
-    print("ok")
