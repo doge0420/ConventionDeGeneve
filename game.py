@@ -6,7 +6,7 @@ from time import sleep
 class GAME(GUI):
     def __init__(self):
         super().__init__()
-        
+
         self.LEAST_USED_LETTERS = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
         self.run = True
         self.guesses = []
@@ -15,7 +15,7 @@ class GAME(GUI):
         self.menu()
 
         self.game_loop()
-        
+
     def _choose_word(self, debug = False):
         with open("ressources/words.txt", "r") as f:
             words = f.readlines()
@@ -39,15 +39,15 @@ class GAME(GUI):
 
     def game_loop(self):
         word_list = self._choose_word()
-        
+
         word_diff = self._word_difficulty(word_list)
-        
+
         while self.run:
             self.clear_screen()
             self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
 
             guess_input = input("Veuillez choisir une lettre : ")
-            
+
             if len(guess_input) == 1 and (guess_input in ascii_lowercase or guess_input in ascii_uppercase):
                 guess_input = guess_input.lower()
                 if guess_input in word_list:
