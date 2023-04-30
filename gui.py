@@ -1,4 +1,5 @@
 import os
+import sys
 
 class GUI:
     def __init__(self):
@@ -33,7 +34,7 @@ class GUI:
         self.choice["pseudo"] = pseudo
 
     def _load_ascii(self):
-        with open("title.txt", "r", encoding="utf-8") as f:
+        with open("ressources/title.txt", "r", encoding="utf-8") as f:
             print(f.read())
 
     def _choice_loop(self):
@@ -42,7 +43,7 @@ class GUI:
             self._get_choice()
 
     def _get_choice(self):
-        choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\nVotre choix : ")
+        choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\n4. EXIT\n\nVotre choix : ")
 
         if choice == "1":
             ... # lance le jeu
@@ -53,13 +54,19 @@ class GUI:
             self._get_settings()
 
         elif choice == "3":
-            ... # print un document qui aide
+            self._refresh_screen_menu()
+            with open("ressources/help.txt", "r", encoding="utf-8") as f:
+                print(f.read())
+            input("\nAppuyez sur entrer pour continuer...")
+        
+        elif choice == "4":
+            sys.exit("\nA la prochaine !")
         
         else:
             print("\nNumero invalide\n")
 
     def _get_settings(self):
-        setting = input("1.NOMBRE DE JOUEURS ([1])([2]) \n2.DIFFICULTE ([1])([2])([3]) \n3.MODE INCREDIBLE ([n])([y])\n4.ARRIERE\nChoix du reglage : ")
+        setting = input("1.NOMBRE DE JOUEURS ([1])([2]) \n2.DIFFICULTE ([1])([2])([3]) \n3.MODE INCREDIBLE ([n])([y])\n4.ARRIERE\n\nChoix du reglage : ")
 
         if setting == "1":
             n_players = input("Nombre de joueurs (1/2)? : ")

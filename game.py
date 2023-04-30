@@ -17,7 +17,7 @@ class GAME(GUI):
         self.game_loop()
         
     def _choose_word(self, debug = False):
-        with open("words.txt", "r") as f:
+        with open("ressources/words.txt", "r") as f:
             words = f.readlines()
 
         word = choice(words).strip()
@@ -57,7 +57,7 @@ class GAME(GUI):
                     self.bad_guess.append(guess_input)
                     print("Mauvaise lettre :(")
             else:
-                print("Veuillez entrez une lettre.")
+                print("Veuillez entrez UNE L-E-T-T-R-E.")
 
             sleep(1.5)
 
