@@ -54,13 +54,27 @@ class GAME(GUI):
                 if guess_input in word_list:
                     self.guesses.append(guess_input)
                     print("Bonne lettre :)")
+
+                    if len(self.guesses) >= len(word_list):
+                        self.clear_screen()
+                        self.flag = False
+                        ... # win screen
+                    else:
+                        pass
+
                 else:
                     self.bad_guess.append(guess_input)
                     self.clear_screen()
                     print("Mauvaise lettre :(")
-                    print("\n\n")
-                    with open (f"pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
-                        print(f.read())
+
+                    if len(self.bad_guess) > 11:
+                        self.run = False
+                        print("tarace")
+                        ... # death screen
+                    else:
+                        print("\n\n")
+                        with open (f"pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
+                            print(f.read())
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
 
