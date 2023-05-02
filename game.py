@@ -1,3 +1,4 @@
+from encodings import utf_8
 from gui import GUI
 from random import choice
 from string import ascii_lowercase, ascii_uppercase
@@ -55,7 +56,11 @@ class GAME(GUI):
                     print("Bonne lettre :)")
                 else:
                     self.bad_guess.append(guess_input)
+                    self.clear_screen()
                     print("Mauvaise lettre :(")
+                    print("\n\n")
+                    with open (f"pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
+                        print(f.read())
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
 
