@@ -8,8 +8,8 @@ class GUI(LEADERBOARD):
         self.flag = True
 
     # debug
-    # def __del__(self):
-    #     print(self.choice)
+    def __del__(self):
+        print(self.choice)
 
     # menu
     ############################
