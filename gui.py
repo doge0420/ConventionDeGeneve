@@ -1,7 +1,8 @@
 import os
 import sys
+from leaderboard import LEADERBOARD
 
-class GUI:
+class GUI(LEADERBOARD):
     def __init__(self):
         self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None}
         self.flag = True
