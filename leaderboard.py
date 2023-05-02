@@ -27,9 +27,10 @@ class LEADERBOARD:
         for i, name in enumerate(dict_sort.keys()):
             print(f"{i+1}. {name} - {dict_sort[name]} pts")
 
-#test
-name = "ndava" 
-score = 999999999999
-lead = LEADERBOARD()
-# lead.add_scoreboard(score, name)
-lead.show_scoreboard()
+if __name__ == "__main__":
+    #test
+    name = "ndava" 
+    score = 999999999999
+    lead = LEADERBOARD()
+    # lead.add_scoreboard(score, name)
+    lead.show_scoreboard()

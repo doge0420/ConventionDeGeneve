@@ -58,6 +58,7 @@ class GAME(GUI):
                     if len(self.guesses) >= len(word_list):
                         self.clear_screen()
                         self.flag = False
+                        print("oui")
                         ... # win screen
                     else:
                         pass
