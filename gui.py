@@ -64,6 +64,7 @@ class GUI:
         elif choice == "4":
             self._refresh_screen_menu()
             self.leaderboard.show_scoreboard()
+            input("\nAppuyez sur entrer pour continuer...")
         
         elif choice == "5":
             sys.exit("\nA la prochaine !")
