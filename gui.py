@@ -44,7 +44,7 @@ class GUI(LEADERBOARD):
             self._get_choice()
 
     def _get_choice(self):
-        choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\n4. EXIT\n\nVotre choix : ")
+        choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\n4. SCOREBOARD\n5. EXIT\n\nVotre choix : ")
 
         if choice == "1":
             self.flag = False
@@ -60,6 +60,9 @@ class GUI(LEADERBOARD):
             input("\nAppuyez sur entrer pour continuer...")
         
         elif choice == "4":
+            self.show_scoreboard()
+        
+        elif choice == "5":
             sys.exit("\nA la prochaine !")
         
         else:
