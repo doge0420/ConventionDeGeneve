@@ -2,35 +2,34 @@ import json
 
 class LEADERBOARD:
     def __init__(self):
-        with open("ressources/leaderboard.txt", "r") as f:
+        with open(f"ressources/leaderboard.json", "r") as f:
             self.board = json.load(f)
-            
-    def __del__(self):
-        json.dump(self.board, open("ressources/leaderboard.txt", "w"))
-            
+
+    def _dump_json(self):
+        with open(f"ressources/leaderboard.json", "w") as f:
+            json.dump(self.board, f, indent=4)
+
     def add_scoreboard(self, score, name):
         if name in self.board.keys():
             if self.board[name] < score:
                 self.board[name] = score
+                self._dump_json()
             else:
                 print("Vous avez déjà un meilleur score")
         else:
             self.board[name] = score
+            self._dump_json()
 
-    def show_scoreboard(self, name):
-        scorelist = []
-        for x in self.board.keys():
-            scorelist.append(x)
+    def show_scoreboard(self):
+        # trie le leaderboard par score
+        dict_sort = dict(sorted(self.board.items(), key=lambda x : -x[1]))
 
-        scorelist.sort()
-        
-        for i, y in enumerate(scorelist):
-            print(f"{i}. {self.board[y]}")
-           
+        for i, name in enumerate(dict_sort.keys()):
+            print(f"{i+1}. {name} - {dict_sort[name]} pts")
 
 #test
-name = "lol" 
-score = 12
-swag = LEADERBOARD(name,score)
-swag.add_scoreboard()
-swag.show_scoreboard()
+name = "ndava" 
+score = 999999999999
+lead = LEADERBOARD()
+# lead.add_scoreboard(score, name)
+lead.show_scoreboard()

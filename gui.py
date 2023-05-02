@@ -46,7 +46,6 @@ class GUI:
         choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\n4. EXIT\n\nVotre choix : ")
 
         if choice == "1":
-            ... # lance le jeu
             self.flag = False
 
         elif choice == "2":
