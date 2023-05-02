@@ -2,10 +2,12 @@ import os
 import sys
 from leaderboard import LEADERBOARD
 
-class GUI(LEADERBOARD):
+class GUI:
     def __init__(self):
         self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None}
         self.flag = True
+
+        self.leaderboard = LEADERBOARD()
 
     # debug
     def __del__(self):
@@ -60,7 +62,8 @@ class GUI(LEADERBOARD):
             input("\nAppuyez sur entrer pour continuer...")
         
         elif choice == "4":
-            self.show_scoreboard()
+            self._refresh_screen_menu()
+            self.leaderboard.show_scoreboard()
         
         elif choice == "5":
             sys.exit("\nA la prochaine !")
