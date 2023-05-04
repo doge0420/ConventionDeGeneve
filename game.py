@@ -74,7 +74,7 @@ class GAME(GUI):
                         ... # death screen
                     else:
                         print("\n\n")
-                        with open (f"pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
+                        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
                             print(f.read())
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
