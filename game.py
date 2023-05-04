@@ -43,25 +43,22 @@ class GAME(GUI):
 
         word_diff = self._word_difficulty(word_list)
 
+        self.clear_screen()
+        self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
+        guess_input = input("Veuillez choisir une lettre : ")
+
         while self.run:
-            self.clear_screen()
-            self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
-
-            guess_input = input("Veuillez choisir une lettre : ")
-
             if len(guess_input) == 1 and (guess_input in ascii_lowercase or guess_input in ascii_uppercase):
                 guess_input = guess_input.lower()
                 if guess_input in word_list:
                     self.guesses.append(guess_input)
                     print("Bonne lettre :)")
 
-                    if len(self.guesses) >= len(word_list):
+                    if self.check_win():
                         self.clear_screen()
                         self.run = False
-                        print("oui")
-                        ... # win screen
-                    else:
-                        pass
+                        
+                        self.win_screen(word_list, word_diff, self.bad_guess, self.choice["pseudo"])
 
                 else:
                     self.bad_guess.append(guess_input)
@@ -70,16 +67,25 @@ class GAME(GUI):
 
                     if len(self.bad_guess) > 11:
                         self.run = False
-                        print("tarace")
                         ... # death screen
                     else:
                         print("\n\n")
-                        with open (f"pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
+                        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
                             print(f.read())
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
 
             sleep(1.5)
+
+            if self.run:
+                self.clear_screen()
+                self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
+                guess_input = input("Veuillez choisir une lettre : ")
+
+    def check_win(self, word_list):
+        return all(i in word_list for i in self.guesses)
+            
+
 
 if __name__ == "__main__":
     GAME()

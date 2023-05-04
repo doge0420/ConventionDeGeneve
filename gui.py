@@ -147,5 +147,16 @@ class GUI:
 
         print("\n\n\n")
 
+    def win_screen(self, word_list : list, word_diff : int, bad_guesses : list, pseudo : str):
+        with open("ressources/win.txt", "r", encoding="utf-8") as f:
+            win_char = f.read()
+
+        score = len(word_list) + word_diff - len(bad_guesses)
+
+        print(win_char)
+        print(f"\nVotre score est {score} pts !")
+
+        self.leaderboard.add_scoreboard(score, pseudo)
+
 if __name__ == "__main__": 
     gui = GUI()
