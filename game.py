@@ -3,6 +3,7 @@ from gui import GUI
 from random import choice
 from string import ascii_lowercase, ascii_uppercase
 from time import sleep
+from PIL import Image
 
 class GAME(GUI):
     def __init__(self):
@@ -72,6 +73,9 @@ class GAME(GUI):
                         self.run = False
                         print("tarace")
                         ... # death screen
+                    elif self.choice["mode_incredible"]:
+                        with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as proute:
+                            proute.show()
                     else:
                         print("\n\n")
                         with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
