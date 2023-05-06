@@ -61,11 +61,15 @@ class GAME(GUI):
                     
                     print("Bonne lettre :)")
 
-                    if self.check_win(word_list) and (len(set(word_list)) == len(set(self.guesses))):
+                    # win
+                    if self.check_win(word_list) and (len(set(word_list)) == len(set(self.guesses))):  
                         self.clear_screen()
                         self.run = False
                         
                         self.win_screen(word_list, word_diff, self.bad_guess, self.choice["pseudo"])
+                        
+                        if self.choice["mode_incredible"]:
+                            self.mode_incredible()
 
                 else:
                     self.bad_guess.append(guess_input)
@@ -93,9 +97,13 @@ class GAME(GUI):
     def check_win(self, word_list):
         return all(i in self.guesses for i in word_list)
 
-    def mode_incredible(self):
-        with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as proute:
-            proute.show()
+    def mode_incredible(self, win=False):
+        if win:
+            with Image.open("ressources/incredible/mincredible_bravo.png") as f:
+                f.show()
+        else:
+            with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as f:
+                f.show()
             
     def mode_normal(self):
         print("\n\n")
