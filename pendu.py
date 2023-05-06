@@ -79,7 +79,7 @@ class PENDU(MENU):
 
         print(f"\tMot à deviner : \t", end="")
 
-        for word_letter in self.word:
+        for word_letter in self.word_list:
             if word_letter in self.guesses:
                 print(word_letter, end="")
             else:
