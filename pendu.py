@@ -72,6 +72,12 @@ class PENDU(GUI):
                 self.clear_screen()
                 self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
                 guess_input = input("Veuillez choisir une lettre : ")
+class GAMEMODE(GUI):
+    def ___init___(self):
+        if "mode_incredible" == True:
+            return self._mode_incredible
+        else:
+            return self._mode_normal
 
     def _mode_incredible(self, win=False):
         if win:
