@@ -10,11 +10,8 @@ class MENU(GUI):
         self.leaderboard = LEADERBOARD()
 
     # debug
-    def __del__(self):
-        print(self.choice)
-
-    # menu
-    ############################
+    # def __del__(self):
+    #     print(self.choice)
 
     def menu(self):
         # ascii

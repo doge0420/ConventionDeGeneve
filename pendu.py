@@ -107,6 +107,8 @@ class PENDU(MENU):
         """
         self._init_end_screen()
         
+        self.gamemode.bravo_normal()
+        
         if self.choice["mode_incredible"]:
             self.gamemode.bravo_incredible()
         
