@@ -18,16 +18,25 @@ class GAME(GUI):
 
         self.game_loop()
 
-    def _choose_word(self, debug = False):
+    def _choose_word(self):
         with open("ressources/words.txt", "r") as f:
             words = f.readlines()
 
-        word = choice(words).strip()
+        mode = self.choice["difficulte"]
 
-        if debug:
-            print(word)
-
-        return [i for i in word]
+        while True:
+            word = choice(words).strip()
+            word_list = [i for i in word]
+            diff = self._word_difficulty(word_list)
+            
+            if mode == 1 and diff in range(5, 8+1, step=1):
+                return word_list, diff
+            
+            elif mode == 2 and diff in range(9, 12+1, step=1):
+                return word_list, diff
+            
+            elif mode == 3 and diff in range(13, 16+1, step=1):
+                return word_list, diff
 
     def _word_difficulty(self, word):
         lenght = len(word)
@@ -40,9 +49,7 @@ class GAME(GUI):
         return lenght + bonus
 
     def game_loop(self):
-        word_list = self._choose_word()
-
-        word_diff = self._word_difficulty(word_list)
+        word_list, word_diff = self._choose_word()
 
         self.clear_screen()
         self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
