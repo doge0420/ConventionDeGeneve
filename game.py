@@ -55,7 +55,7 @@ class GAME(GUI):
                     self.guesses.append(guess_input)
                     print("Bonne lettre :)")
 
-                    if self.check_win():
+                    if self.check_win(word_list):
                         self.clear_screen()
                         self.run = False
                         
