@@ -8,16 +8,15 @@ class PENDU(MENU):
     def __init__(self):
         super().__init__()
 
-        self.LEAST_USED_LETTERS = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
+        # self.LEAST_USED_LETTERS = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
         self.run = True
         self.guesses = []
         self.bad_guess = []
         
         self.word = WORD()
         self.gamemode = GAMEMODE()
-
+    
         self.menu()
-        
         self.game_loop()
 
     def game_loop(self):
@@ -116,6 +115,7 @@ class PENDU(MENU):
         
         print(f"\nLe mot etait : {''.join(self.word_list)}")
         print(f"\nVotre score est {score} pts !")
+        input("\nAppuyez sur entrer pour continuer...")
 
         self.leaderboard.add_scoreboard(score, self.choice["pseudo"])
         
@@ -127,6 +127,8 @@ class PENDU(MENU):
 
         print(lose_char)
         print(f"\nLe mot etait : {''.join(self.word_list)}")
+        input("\nAppuyez sur entrer pour continuer...")
 
 if __name__ == "__main__":
-    PENDU()
+    while True:
+        PENDU()
