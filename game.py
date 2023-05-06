@@ -53,9 +53,15 @@ class GAME(GUI):
                 guess_input = guess_input.lower()
                 if guess_input in word_list:
                     self.guesses.append(guess_input)
+                    
+                    # debug
+                    # print(self.guesses)
+                    # print(word_list)
+                    # print(self.check_win(word_list))
+                    
                     print("Bonne lettre :)")
 
-                    if self.check_win(word_list):
+                    if self.check_win(word_list) and (len(set(word_list)) == len(set(self.guesses))):
                         self.clear_screen()
                         self.run = False
                         
@@ -64,18 +70,16 @@ class GAME(GUI):
                 else:
                     self.bad_guess.append(guess_input)
                     self.clear_screen()
+                    
                     print("Mauvaise lettre :(")
 
                     if len(self.bad_guess) > 11:
                         self.run = False
                         ... # death screen
                     elif self.choice["mode_incredible"]:
-                        with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as proute:
-                            proute.show()
+                        self.mode_incredible()
                     else:
-                        print("\n\n")
-                        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
-                            print(f.read())
+                        self.mode_normal()
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
 
@@ -87,9 +91,16 @@ class GAME(GUI):
                 guess_input = input("Veuillez choisir une lettre : ")
 
     def check_win(self, word_list):
-        return all(i in word_list for i in self.guesses)
-            
+        return all(i in self.guesses for i in word_list)
 
+    def mode_incredible(self):
+        with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as proute:
+            proute.show()
+            
+    def mode_normal(self):
+        print("\n\n")
+        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
+            print(f.read())
 
 if __name__ == "__main__":
     GAME()

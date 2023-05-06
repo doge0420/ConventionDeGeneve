@@ -15,7 +15,7 @@ class LEADERBOARD:
                 self.board[name] = score
                 self._dump_json()
             else:
-                print("\nVous avez déjà un meilleur score")
+                print("\nVous avez déjà un meilleur score dans le leaderboard\n")
         else:
             self.board[name] = score
             self._dump_json()

@@ -154,6 +154,8 @@ class GUI:
         score = len(word_list) + word_diff - len(bad_guesses)
 
         print(win_char)
+        
+        print(f"\nLe mot etait : {''.join(word_list)}")
         print(f"\nVotre score est {score} pts !")
 
         self.leaderboard.add_scoreboard(score, pseudo)
