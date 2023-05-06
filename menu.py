@@ -29,15 +29,32 @@ class MENU(GUI):
         return self.choice
 
     def _ask_pseudo(self):
+        """
+        demande à l'utilisateur son pseudonyme et le met dans le dictionaire choice
+        """
         pseudo = input("Quel est votre pseudo ? : ")
         self.choice["pseudo"] = pseudo
 
     def _choice_loop(self):
+        """
+        fonction qui continue à tourner jusqu'à que self.flag soit False 
+        (quand l'utilisateur quitte le jeu)
+        """
         while self.flag:
             self.refresh_screen_menu()
             self._get_choice()
 
     def _get_choice(self):
+        """
+        permet à l'utilisateur de choisir 5 options différentes, affichées en dessous de l'écran titre
+        1.PLAY, 2.SETTINGS, 3.HOW TO PLAY, 4.SCOREBOARD and 5.EXIT. 
+        si l'utilisateur choisit 1 (PLAY), self.flag devient False et le jeu commence
+        s'il choisit 2 (SETTINGS), _get_settings() est instancié
+        s'il choisit 3 (HOW TO PLAY), le text help.txt est affiché, renseignant le joueur de comment le jeu marche
+        s'il choisit 4 (SCOREBOARD), le scoreboard est affiché
+        s'il choisit 5 (EXIT), le jeu est fermé avec sys.exit
+        
+        """
         choice = input("1. PLAY \n2. SETTINGS \n3. HOW TO PLAY\n4. SCOREBOARD\n5. EXIT\n\nVotre choix : ")
 
         if choice == "1":
@@ -103,6 +120,13 @@ class MENU(GUI):
     ############################
         
     def display_word_guess(self, word : list, guesses : list, bad_guesses : list, word_diff : int):
+        """
+        prend en tant que valeurs le mot à deviner
+        les lettres fausses que l'utilisateur a deviné dans une liste
+        les lettres justes que l'utilisateur a deviné dans une liste
+        le niveau de difficulé du mot
+        affiche tout dans le terminal, les lettres qui n'ont pas encore été devinées
+        """
         self.clear_screen()
 
         print("\n\n\n")
@@ -127,6 +151,19 @@ class MENU(GUI):
             print(f"{bad_guess}", end=" ")
 
         print("\n\n\n")
+
+        
+    def display_win(self, word_list : list, word_diff : int, bad_guesses : list, pseudo : str):
+        """
+        Affiche le score final du joueur:
+        score = longueur du mot + difficulté - lettres fausses
+        """
+        score = len(word_list) + word_diff - len(bad_guesses)
+        
+        print(f"\nLe mot etait : {''.join(word_list)}")
+        print(f"\nVotre score est {score} pts !")
+
+        self.leaderboard.add_scoreboard(score, pseudo)
 
 if __name__ == "__main__": 
     menu = MENU()
