@@ -21,7 +21,7 @@ class PENDU(GUI):
         self.game_loop()
 
     def game_loop(self):
-        word_list, word_diff = self.word.get_word(self.choice["difficulty"])
+        word_list, word_diff = self.word.get_word(self.choice["difficulte"])
 
         self.clear_screen()
         self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
