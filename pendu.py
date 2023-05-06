@@ -97,6 +97,13 @@ class GAME(GUI):
     def _check_win(self, word_list):
         return all(i in self.guesses for i in word_list)
 
+class GAMEMODE(GUI):
+    def ___init___(self, mode_incredible):
+        if mode_incredible == True:
+            return self._mode_incredible
+        else:
+            return self._mode_normal
+        
     def _mode_incredible(self, win=False):
         if win:
             with Image.open("ressources/incredible/mincredible_bravo.png") as f:
