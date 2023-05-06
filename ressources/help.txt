@@ -1,11 +1,30 @@
-1. PLAY
-- lance le jeu ;)
+=== MENU ===
 
-2. SETTINGS
-- nombre de joueurs: séléction du nombre de joueurs (1 à 2)
-- difficulté: séléction de la difficulté des mots à deviner
-- mode incredible: change l'affichage du pendu à un affichage moins adequat
+    1. PLAY
+    - lance le jeu ;)
 
-3.
-- zip bomb
-- taxer les pauvres
+    2. SETTINGS
+    - nombre de joueurs: séléction du nombre de joueurs (1 à 2)
+    - difficulté: séléction de la difficulté des mots à deviner
+    - mode incredible: change l'affichage du pendu à un affichage moins adequat, mais plus original
+
+    3. HOW TO PLAY
+    - explique comment naviguer l'interface
+
+    4. SCOREBOARD 
+    - montre le score de tous les joueurs, les classant du plus grand au plus petit
+
+    5. EXIT
+    - ferme le jeux
+
+=== JEU ===
+
+    - entrez une lettre, afin de deviner le mot caché
+    - si elle appartient au mot, elle s'affichera dans le mot caché, sinon le pendu sera dessiné
+    - le jeu se termine quand vous trouvez le mot ou quand le pendu est complétement dessiné (après 11 erreurs)
+
+=== SCORE ===
+
+    - plus la difficulté du mot est haute, plus elle apporte de points
+    - plus vous faites d'erreurs, moins vous obtiendrez de points
+    - il n'est pas impossible d'atteindre un score négatif avec un mot simple et beaucoup d'erreurs
