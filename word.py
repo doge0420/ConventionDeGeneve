@@ -3,6 +3,10 @@ from random import choice
 
 class WORD:
     def get_word(self, difficulte):
+        """
+        prend la difficulté du mot en tant qu'argument et retourne un mot 
+        correspondant à la difficulté de words.json
+        """
         with open("ressources/words.json", "r") as f:
             words = json.load(f)
 
@@ -13,8 +17,20 @@ class WORD:
 
         return self.word_list, word_choice[1]
     
+    def check_win(self, guesses):
+        """
+        vérifie si toutes les lettres dans word_list (lettres à devier) 
+        sont contenues dans guesses (lettres devinées)
+        si oui, la fonction retourne True, sinon False
+        """
+        return all(i in guesses for i in self.word_list)
+    
     # plus besoin
     def word_difficulty(self, word):
+        """
+        calcule la difficulté: 
+        difficulté = longueur du mot + le nombre de lettres peu communes dedans
+        """
         lenght = len(word)
 
         bonus = 0
@@ -24,5 +40,4 @@ class WORD:
 
         return lenght + bonus
 
-    def check_win(self, guesses):
-        return all(i in guesses for i in self.word_list)
+    
