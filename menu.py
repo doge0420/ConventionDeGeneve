@@ -82,6 +82,10 @@ class MENU(GUI):
             print("\nNumero invalide\n")
 
     def _get_settings(self):
+        """
+        affiche 3 paramètres, et l'option de retourner au menu, que l'utilisateur peux séléectionner avec un chiffre
+        puis chaque paramètre est modifiable avec un chiffre, ou une lettre dans le cas de gamemode
+        """
         setting = input("1.NOMBRE DE JOUEURS ([1])([2]) \n2.DIFFICULTE ([1])([2])([3]) \n3.MODE INCREDIBLE ([n])([y])\n4.ARRIERE\n\nChoix du reglage : ")
 
         if setting == "1":

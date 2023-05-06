@@ -30,7 +30,9 @@ class LEADERBOARD:
             self._dump_json()
 
     def show_scoreboard(self):
-        # trie le leaderboard par score
+        """
+        trie le leaderboard par score et l'affiche dans le terminal
+        """
         dict_sort = dict(sorted(self.board.items(), key=lambda x : -x[1]))
 
         for i, name in enumerate(dict_sort.keys()):
