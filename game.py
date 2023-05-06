@@ -1,9 +1,9 @@
-from encodings import utf_8
 from gui import GUI
 from random import choice
 from string import ascii_lowercase, ascii_uppercase
 from time import sleep
 from PIL import Image
+import json
 
 class GAME(GUI):
     def __init__(self):
@@ -19,34 +19,27 @@ class GAME(GUI):
         self.game_loop()
 
     def _choose_word(self):
-        with open("ressources/words.txt", "r") as f:
-            words = f.readlines()
-
-        mode = self.choice["difficulte"]
-
-        while True:
-            word = choice(words).strip()
-            word_list = [i for i in word]
-            diff = self._word_difficulty(word_list)
+        with open("ressources/words.json", "r") as f:
+            words = json.load(f)
             
-            if mode == 1 and diff in range(5, 8+1, step=1):
-                return word_list, diff
-            
-            elif mode == 2 and diff in range(9, 12+1, step=1):
-                return word_list, diff
-            
-            elif mode == 3 and diff in range(13, 16+1, step=1):
-                return word_list, diff
+        word_range = words[self.choice["difficulte"]]
+        
+        word_choice = choice(list(word_range.items()))
+        
+        print(word_choice)
+        
+        return [i for i in word_choice[0]], word_choice[1]
+        
+    # plus besoin
+    # def _word_difficulty(self, word):
+    #     lenght = len(word)
 
-    def _word_difficulty(self, word):
-        lenght = len(word)
+    #     bonus = 0
+    #     for letter in word:
+    #         if letter in self.LEAST_USED_LETTERS:
+    #             bonus += 2
 
-        bonus = 0
-        for letter in word:
-            if letter in self.LEAST_USED_LETTERS:
-                bonus += 2
-
-        return lenght + bonus
+    #     return lenght + bonus
 
     def game_loop(self):
         word_list, word_diff = self._choose_word()
@@ -82,7 +75,7 @@ class GAME(GUI):
                     self.bad_guess.append(guess_input)
                     self.clear_screen()
                     
-                    print("Mauvaise lettre :(")
+                    print("\n\nMauvaise lettre :(")
 
                     if len(self.bad_guess) > 11:
                         self.run = False

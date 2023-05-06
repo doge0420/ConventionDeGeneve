@@ -4,7 +4,7 @@ from leaderboard import LEADERBOARD
 
 class GUI:
     def __init__(self):
-        self.choice = {"joueurs" : 1, "difficulte" : 1, "mode_incredible" : False, "pseudo" : None}
+        self.choice = {"joueurs" : 1, "difficulte" : "1", "mode_incredible" : False, "pseudo" : None}
         self.flag = True
 
         self.leaderboard = LEADERBOARD()
@@ -132,7 +132,7 @@ class GUI:
             if word_letter in guesses:
                 print(word_letter, end="")
             else:
-                print("*", end="")
+                print(".", end="")
 
         print("\n\n")
 
