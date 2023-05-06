@@ -1,11 +1,10 @@
-from gui import GUI
-from random import choice
+from menu import MENU
 from string import ascii_lowercase, ascii_uppercase
 from time import sleep
 from PIL import Image
-import json
+from word import WORD
 
-class PENDU(GUI):
+class PENDU(MENU):
     def __init__(self):
         super().__init__()
 
@@ -17,41 +16,33 @@ class PENDU(GUI):
         self.word = WORD()
 
         self.menu()
-
+        
         self.game_loop()
 
     def game_loop(self):
-        word_list, word_diff = self.word.get_word(self.choice["difficulte"])
-
-        self.clear_screen()
-        self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
-        guess_input = input("Veuillez choisir une lettre : ")
+        self._init_game_loop()
 
         while self.run:
-            if len(guess_input) == 1 and (guess_input in ascii_lowercase or guess_input in ascii_uppercase):
-                guess_input = guess_input.lower()
-                if guess_input in word_list:
-                    self.guesses.append(guess_input)
-
-                    # debug
-                    # print(self.guesses)
-                    # print(word_list)
-                    # print(self.check_win(word_list))
+            if len(self.guess_input) == 1 and (self.guess_input in ascii_lowercase or self.guess_input in ascii_uppercase):
+                self.guess_input = self.guess_input.lower()
+                if self.guess_input in self.word_list:
+                    self.guesses.append(self.guess_input)
 
                     print("Bonne lettre :)")
 
                     # win
-                    if self.word.check_win(self.guesses) and (len(set(word_list)) == len(set(self.guesses))):  
+                    if self.word.check_win(self.guesses) and (len(set(self.word_list)) == len(set(self.guesses))):  
+                        
                         self.clear_screen()
                         self.run = False
                         
-                        self.win_screen(word_list, word_diff, self.bad_guess, self.choice["pseudo"])
+                        self.win_screen(self.word_list, self.word_diff, self.bad_guess, self.choice["pseudo"])
                         
                         if self.choice["mode_incredible"]:
                             self._mode_incredible(True)
 
                 else:
-                    self.bad_guess.append(guess_input)
+                    self.bad_guess.append(self.guess_input)
                     self.clear_screen()
                     
                     print("\n\nMauvaise lettre :(")
@@ -59,6 +50,7 @@ class PENDU(GUI):
                     if len(self.bad_guess) > 11:
                         self.run = False
                         ... # death screen
+                        
                     elif self.choice["mode_incredible"]:
                         self._mode_incredible()
                     else:
@@ -69,48 +61,47 @@ class PENDU(GUI):
             sleep(1.5)
 
             if self.run:
-                self.clear_screen()
-                self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
-                guess_input = input("Veuillez choisir une lettre : ")
+                self._display_game()
 
-    def _mode_incredible(self, win=False):
-        if win:
-            with Image.open("ressources/incredible/mincredible_bravo.png") as f:
-                f.show()
-        else:
-            with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as f:
-                f.show()
+    def _display_game(self):
+        self.clear_screen()
+        self.display_word_guess(self.word_list, self.guesses, self.bad_guess, self.word_diff)
+        self.guess_input = input("Veuillez choisir une lettre : ")
 
-    def _mode_normal(self):
+    def _init_game_loop(self):
+        self.word_list, self.word_diff = self.word.get_word(self.choice["difficulte"])
+        self._display_game()
+
+class MODE:
+    def __init__(self, mode):
+        self.mode = mode
+
+    # mode incredible
+    ############################
+    def _pendu_incredible(self, bad_guess):
+        with Image.open(f"ressources/incredible/mincredible{len(bad_guess)}.png") as f:
+            f.show()
+
+    def _bravo_incredible(self):
+        with Image.open("ressources/incredible/mincredible_bravo.png") as f:
+            f.show()
+
+    # mode normal
+    ############################
+    def _pendu_normal(self):
         print("\n\n")
         with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
             print(f.read())
-
-class WORD:
-    def get_word(self, difficulte):
-        with open("ressources/words.json", "r") as f:
-            words = json.load(f)
-
-        word_range = words[difficulte]
-        word_choice = choice(list(word_range.items()))
-
-        self.word_list = [i for i in word_choice[0]]
-
-        return self.word_list, word_choice[1]
-    
-    # plus besoin
-    def word_difficulty(self, word):
-        lenght = len(word)
-
-        bonus = 0
-        for letter in word:
-            if letter in self.LEAST_USED_LETTERS:
-                bonus += 2
-
-        return lenght + bonus
-
-    def check_win(self, guesses):
-        return all(i in guesses for i in self.word_list)
+            
+    def _bravo_normal(self):
+        with open("ressources/win.txt", "r", encoding="utf-8") as f:
+            print(f.read())
+            
+    def bravo(self):
+        ...
+        
+    def pendu(self):
+        ...
 
 if __name__ == "__main__":
     PENDU()
