@@ -62,14 +62,14 @@ class GAME(GUI):
                     print("Bonne lettre :)")
 
                     # win
-                    if self.check_win(word_list) and (len(set(word_list)) == len(set(self.guesses))):  
+                    if self._check_win(word_list) and (len(set(word_list)) == len(set(self.guesses))):  
                         self.clear_screen()
                         self.run = False
                         
                         self.win_screen(word_list, word_diff, self.bad_guess, self.choice["pseudo"])
                         
                         if self.choice["mode_incredible"]:
-                            self.mode_incredible(True)
+                            self._mode_incredible(True)
 
                 else:
                     self.bad_guess.append(guess_input)
@@ -81,9 +81,9 @@ class GAME(GUI):
                         self.run = False
                         ... # death screen
                     elif self.choice["mode_incredible"]:
-                        self.mode_incredible()
+                        self._mode_incredible()
                     else:
-                        self.mode_normal()
+                        self._mode_normal()
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
 
@@ -94,10 +94,10 @@ class GAME(GUI):
                 self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
                 guess_input = input("Veuillez choisir une lettre : ")
 
-    def check_win(self, word_list):
+    def _check_win(self, word_list):
         return all(i in self.guesses for i in word_list)
 
-    def mode_incredible(self, win=False):
+    def _mode_incredible(self, win=False):
         if win:
             with Image.open("ressources/incredible/mincredible_bravo.png") as f:
                 f.show()
@@ -105,7 +105,7 @@ class GAME(GUI):
             with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as f:
                 f.show()
             
-    def mode_normal(self):
+    def _mode_normal(self):
         print("\n\n")
         with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
             print(f.read())
