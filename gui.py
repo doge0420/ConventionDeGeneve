@@ -160,5 +160,14 @@ class GUI:
 
         self.leaderboard.add_scoreboard(score, pseudo)
 
+    def lose_screen(self, word_list : list):
+        with open("ressources/lose.txt", "r", encoding="utf-8") as f:
+            lose_char = f.read()
+
+        print(lose_char)
+        print(f"\nLe mot etait : {''.join(word_list)}")
+
+    
+
 if __name__ == "__main__": 
     gui = GUI()

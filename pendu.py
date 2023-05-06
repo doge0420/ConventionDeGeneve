@@ -2,10 +2,12 @@ from gui import GUI
 from random import choice
 from string import ascii_lowercase, ascii_uppercase
 from time import sleep
-from PIL import Image
 import json
+from gamemode import GAMEMODE
 
-class PENDU(GUI):
+
+
+class PENDU(GUI,GAMEMODE):
     def __init__(self):
         super().__init__()
 
@@ -21,7 +23,7 @@ class PENDU(GUI):
         self.game_loop()
 
     def game_loop(self):
-        word_list, word_diff = self.word.get_word(self.choice["difficulty"])
+        word_list, word_diff = self.word.get_word(self.choice["difficulte"])
 
         self.clear_screen()
         self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
@@ -58,7 +60,7 @@ class PENDU(GUI):
 
                     if len(self.bad_guess) > 11:
                         self.run = False
-                        ... # death screen
+                        self.lose_screen(word_list)
                     elif self.choice["mode_incredible"]:
                         self._mode_incredible()
                     else:
@@ -72,25 +74,6 @@ class PENDU(GUI):
                 self.clear_screen()
                 self.display_word_guess(word_list, self.guesses, self.bad_guess, word_diff)
                 guess_input = input("Veuillez choisir une lettre : ")
-class GAMEMODE(GUI):
-    def ___init___(self):
-        if "mode_incredible" == True:
-            return self._mode_incredible
-        else:
-            return self._mode_normal
-
-    def _mode_incredible(self, win=False):
-        if win:
-            with Image.open("ressources/incredible/mincredible_bravo.png") as f:
-                f.show()
-        else:
-            with Image.open(f"ressources/incredible/mincredible{len(self.bad_guess)}.png") as f:
-                f.show()
-
-    def _mode_normal(self):
-        print("\n\n")
-        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
-            print(f.read())
 
 class WORD:
     def get_word(self, difficulte):
