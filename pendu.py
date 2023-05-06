@@ -1,8 +1,8 @@
-from menu import MENU
 from string import ascii_lowercase, ascii_uppercase
 from time import sleep
-from PIL import Image
 from word import WORD
+from menu import MENU
+from gamemode import GAMEMODE
 
 class PENDU(MENU):
     def __init__(self):
@@ -14,6 +14,7 @@ class PENDU(MENU):
         self.bad_guess = []
         
         self.word = WORD()
+        self.gamemode = GAMEMODE()
 
         self.menu()
         
@@ -31,15 +32,8 @@ class PENDU(MENU):
                     print("Bonne lettre :)")
 
                     # win
-                    if self.word.check_win(self.guesses) and (len(set(self.word_list)) == len(set(self.guesses))):  
-                        
-                        self.clear_screen()
-                        self.run = False
-                        
-                        self.win_screen(self.word_list, self.word_diff, self.bad_guess, self.choice["pseudo"])
-                        
-                        if self.choice["mode_incredible"]:
-                            self._mode_incredible(True)
+                    if self.word.check_win(self.guesses) and (len(set(self.word_list)) == len(set(self.guesses))):      
+                        self._win_screen()
 
                 else:
                     self.bad_guess.append(self.guess_input)
@@ -48,13 +42,11 @@ class PENDU(MENU):
                     print("\n\nMauvaise lettre :(")
 
                     if len(self.bad_guess) > 11:
-                        self.run = False
-                        ... # death screen
-                        
+                        self._lose_screen()
                     elif self.choice["mode_incredible"]:
-                        self._mode_incredible()
+                        self.gamemode.pendu_incredible(self.bad_guess)
                     else:
-                        self._mode_normal()
+                        self.gamemode.pendu_normal()
             else:
                 print("Veuillez entrez UNE L-E-T-T-R-E.")
 
@@ -72,36 +64,28 @@ class PENDU(MENU):
         self.word_list, self.word_diff = self.word.get_word(self.choice["difficulte"])
         self._display_game()
 
-class MODE:
-    def __init__(self, mode):
-        self.mode = mode
-
-    # mode incredible
-    ############################
-    def _pendu_incredible(self, bad_guess):
-        with Image.open(f"ressources/incredible/mincredible{len(bad_guess)}.png") as f:
-            f.show()
-
-    def _bravo_incredible(self):
-        with Image.open("ressources/incredible/mincredible_bravo.png") as f:
-            f.show()
-
-    # mode normal
-    ############################
-    def _pendu_normal(self):
-        print("\n\n")
-        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
-            print(f.read())
-            
-    def _bravo_normal(self):
-        with open("ressources/win.txt", "r", encoding="utf-8") as f:
-            print(f.read())
-            
-    def bravo(self):
-        ...
+    def _win_screen(self):
+        self.clear_screen()
+        self.run = False
         
-    def pendu(self):
-        ...
+        if self.choice["mode_incredible"]:
+            self.gamemode.bravo_incredible()
+        
+        score = len(self.word_list) + self.word_diff - len(self.bad_guess)
+        
+        print(f"\nLe mot etait : {''.join(self.word_list)}")
+        print(f"\nVotre score est {score} pts !")
+
+        self.leaderboard.add_scoreboard(score, self.choice["pseudo"])
+        
+    def _lose_screen(self):
+        self.run = False
+        
+        with open("ressources/lose.txt", "r", encoding="utf-8") as f:
+            lose_char = f.read()
+
+        print(lose_char)
+        print(f"\nLe mot etait : {''.join(self.word_list)}")
 
 if __name__ == "__main__":
     PENDU()

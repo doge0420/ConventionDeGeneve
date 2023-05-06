@@ -127,14 +127,6 @@ class MENU(GUI):
             print(f"{bad_guess}", end=" ")
 
         print("\n\n\n")
-        
-    def display_win(self, word_list : list, word_diff : int, bad_guesses : list, pseudo : str):
-        score = len(word_list) + word_diff - len(bad_guesses)
-        
-        print(f"\nLe mot etait : {''.join(word_list)}")
-        print(f"\nVotre score est {score} pts !")
-
-        self.leaderboard.add_scoreboard(score, pseudo)
 
 if __name__ == "__main__": 
     menu = MENU()
