@@ -69,7 +69,7 @@ class GAME(GUI):
                         self.win_screen(word_list, word_diff, self.bad_guess, self.choice["pseudo"])
                         
                         if self.choice["mode_incredible"]:
-                            self.mode_incredible()
+                            self.mode_incredible(True)
 
                 else:
                     self.bad_guess.append(guess_input)
