@@ -14,9 +14,9 @@ class GAMEMODE:
 
     # mode normal
     ############################
-    def pendu_normal(self):
+    def pendu_normal(self, bad_guess):
         print("\n\n")
-        with open (f"ressources/pendus11/pendu{len(self.bad_guess)}.txt", "r", encoding="utf-8") as f:
+        with open (f"ressources/pendus11/pendu{len(bad_guess)}.txt", "r", encoding="utf-8") as f:
             print(f.read())
             
     def bravo_normal(self):

@@ -115,55 +115,6 @@ class MENU(GUI):
 
         else:
             print("\nNumero invalide\n")
-    
-    # jeu
-    ############################
-        
-    def display_word_guess(self, word : list, guesses : list, bad_guesses : list, word_diff : int):
-        """
-        prend en tant que valeurs le mot à deviner
-        les lettres fausses que l'utilisateur a deviné dans une liste
-        les lettres justes que l'utilisateur a deviné dans une liste
-        le niveau de difficulé du mot
-        affiche tout dans le terminal, les lettres qui n'ont pas encore été devinées
-        """
-        self.clear_screen()
-
-        print("\n\n\n")
-
-        print(f"\tMot à deviner : \t", end="")
-
-        for word_letter in word:
-            if word_letter in guesses:
-                print(word_letter, end="")
-            else:
-                print(".", end="")
-
-        print("\n\n")
-
-        print(f"\tDifficulté : \t{word_diff}", end="")
-
-        print("\n\n")
-
-        print("\tLettres fausses : \t", end="")
-
-        for bad_guess in bad_guesses:
-            print(f"{bad_guess}", end=" ")
-
-        print("\n\n\n")
-
-        
-    def display_win(self, word_list : list, word_diff : int, bad_guesses : list, pseudo : str):
-        """
-        Affiche le score final du joueur:
-        score = longueur du mot + difficulté - lettres fausses
-        """
-        score = len(word_list) + word_diff - len(bad_guesses)
-        
-        print(f"\nLe mot etait : {''.join(word_list)}")
-        print(f"\nVotre score est {score} pts !")
-
-        self.leaderboard.add_scoreboard(score, pseudo)
 
 if __name__ == "__main__": 
     menu = MENU()
