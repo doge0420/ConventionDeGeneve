@@ -7,17 +7,14 @@ class LEADERBOARD:
 
     def _dump_json(self):
         """
-        sauvegarde le leaderboard sur leaderboard.json
+        sauvegarde le leaderboard dans leaderboard.json.
         """
         with open(f"ressources/leaderboard.json", "w") as f:
             json.dump(self.board, f, indent=4)
 
     def add_scoreboard(self, score, name):
         """
-        vérifie si le nom de l'utilisateur est déja inscrit dans le scoreboard, 
-        si oui il le compare à l'ancien score de l'utilisateur
-        si le nouveau score est meilleur que le nouveau,l'ancien score est remplacé par le nouveau. 
-        sinon, rien n'a lieu
+        ajoute un score au leaderboard.
         """
         if name in self.board.keys():
             if self.board[name] < score:
@@ -31,7 +28,7 @@ class LEADERBOARD:
 
     def show_scoreboard(self):
         """
-        trie le leaderboard par score et l'affiche dans le terminal
+        affiche le leaderboard dans le terminal.
         """
         dict_sort = dict(sorted(self.board.items(), key=lambda x : -x[1]))
 

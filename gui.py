@@ -4,8 +4,7 @@ class GUI:
     @staticmethod
     def clear_screen(): 
         """
-        fonction qui vide le terminal 
-        en vérifiant quel OS est utilisé, puis utilisant la commande adequate pour le vider
+        efface le terminal (independant de l'OS).
         """
         if os.name == "nt": #windows
             os.system("cls")
@@ -14,11 +13,11 @@ class GUI:
         else:
             print("OS non supporté")
 
-    def load_ascii(self):
+    def print_ascii(self, path):
         """
-        ouvre le fichier title.txt (écran titre) et l'affiche dans le terminal
+        affiche un ascii art dans le terminal.
         """
-        with open("ressources/title.txt", "r", encoding="utf-8") as f:
+        with open(f"{path}", "r", encoding="utf-8") as f:
             print(f.read())
             
     def refresh_screen_menu(self):
@@ -26,4 +25,4 @@ class GUI:
         execute les deux fonctions précédentes
         """
         self.clear_screen()
-        self.load_ascii()
+        self.print_ascii("ressources/title.txt")

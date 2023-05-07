@@ -20,6 +20,9 @@ class PENDU(MENU):
         self.game_loop()
 
     def game_loop(self):
+        """
+        boucle du jeu, initialise le jeu et tourne jusqu'à ce que le joueur gagne ou perde.
+        """
         self._init_game_loop()
 
         while self.run:
@@ -40,10 +43,10 @@ class PENDU(MENU):
                     print("\n\nMauvaise lettre :(")
 
                     if len(self.bad_guess) > 11:
-                        self._lose_screen()
+                        self.gamemode.loose_normal()
                     elif self.choice["mode_incredible"]:
                         self.gamemode.pendu_incredible(self.bad_guess)
-                        self._lose_screen()
+                        self.gamemode.loose_normal()
                     else:
                         self.gamemode.pendu_normal(self.bad_guess)
             else:
@@ -55,10 +58,16 @@ class PENDU(MENU):
                 self._display_game()
 
     def _init_game_loop(self):
+        """
+        initialise la boucle du jeu.
+        """
         self.word_list, self.word_diff = self.word.get_word(self.choice["difficulte"])
         self._display_game()
 
     def _display_game(self):
+        """
+        affiche les elements du jeu dans le terminal.
+        """
         self.clear_screen()
         self._display_word()
         self._display_info()
@@ -66,11 +75,7 @@ class PENDU(MENU):
 
     def _display_word(self):
         """
-        prend en tant que valeurs le mot à deviner
-        les lettres fausses que l'utilisateur a deviné dans une liste
-        les lettres justes que l'utilisateur a deviné dans une liste
-        le niveau de difficulé du mot
-        affiche tout dans le terminal, les lettres qui n'ont pas encore été devinées
+        affiche les lettres du mot a deviner dans le terminal.
         """
         self.clear_screen()
 
@@ -85,6 +90,9 @@ class PENDU(MENU):
                 print(".", end="")
 
     def _display_info(self):
+        """
+        affiche la difficulté du mot et les lettres fausses.
+        """
         print("\n\n")
         print(f"\tDifficulté : \t{self.word_diff}", end="")
         print("\n\n")
@@ -96,12 +104,15 @@ class PENDU(MENU):
         print("\n\n\n")
 
     def _init_end_screen(self):
+        """
+        initialise l'ecran de fin de jeu.
+        """
         self.clear_screen()
         self.run = False
         
     def _win_screen(self):
         """
-        Affiche le score final du joueur:
+        Affiche le score final du joueur.
         score = longueur du mot + difficulté - lettres fausses
         """
         self._init_end_screen()
@@ -118,16 +129,6 @@ class PENDU(MENU):
         input("\nAppuyez sur entrer pour continuer...")
 
         self.leaderboard.add_scoreboard(score, self.choice["pseudo"])
-        
-    def _lose_screen(self):
-        self._init_end_screen()
-        
-        with open("ressources/lose.txt", "r", encoding="utf-8") as f:
-            lose_char = f.read()
-
-        print(lose_char)
-        print(f"\nLe mot etait : {''.join(self.word_list)}")
-        input("\nAppuyez sur entrer pour continuer...")
 
 if __name__ == "__main__":
     while True:

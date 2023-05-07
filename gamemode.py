@@ -1,19 +1,20 @@
 from PIL import Image
+from gui import GUI
 
-class GAMEMODE:
+class GAMEMODE(GUI):
     
     # mode incredible
     ############################
     def pendu_incredible(self, bad_guess):
         """
-        prends le nombre de fausses lettres et affiche l'image correspondante
+        affiche mr incredible en fonction du nombre de fausses lettres.
         """
         with Image.open(f"ressources/incredible/mincredible{len(bad_guess)}.png") as f:
             f.show()
 
     def bravo_incredible(self):
         """
-        affiche une image pour féliciter l'utilisateur
+        affiche une image de tragulus pour féliciter le joueur.
         """
         with Image.open("ressources/incredible/mincredible_bravo.png") as f:
             f.show()
@@ -22,15 +23,22 @@ class GAMEMODE:
     ############################
     def pendu_normal(self, bad_guess):
         """
-        prends le nombre de fausses lettres et affiche le stage pendu en ascii qui y correspond
+        affiche le pendu en fonction du nombre de fausses lettres.
         """
-        print("\n\n")
-        with open (f"ressources/pendus11/pendu{len(bad_guess)}.txt", "r", encoding="utf-8") as f:
-            print(f.read())
+        self.print_ascii(f"ressources/pendus11/pendu{len(bad_guess)}.txt")
             
     def bravo_normal(self):
         """
-        félicite l'utilisateur, affiche win.txt
+        affiche l'ecran de victoire.
+        """   
+        self.print_ascii("ressources/win.txt")
+        
+    def loose_normal(self):
         """
-        with open("ressources/win.txt", "r", encoding="utf-8") as f:
-            print(f.read())
+        affiche l'ecran de fin quand le joueur perd.
+        """
+        self._init_end_screen()
+        self.print_ascii("ressources/lose.txt")
+        
+        print(f"\nLe mot etait : {''.join(self.word_list)}")
+        input("\nAppuyez sur entrer pour continuer...")

@@ -8,4 +8,3 @@ with Image.open("ressources/incredible/mincredible_bravo.png") as proute:
     proute.show()
     #sleep(1.5)
     #proute.close()
-
