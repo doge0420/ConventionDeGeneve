@@ -44,8 +44,6 @@ class PENDU(MENU):
                     # loose ou pendu
                     if len(self.bad_guess) > 11:
                         self._loose_screen()
-                        if self.choice["mode_incredible"]:
-                            self.gamemode.pendu_incredible(self.bad_guess)
                     else:
                         if self.choice["mode_incredible"]:
                             self.gamemode.pendu_incredible(self.bad_guess)
