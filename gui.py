@@ -25,4 +25,4 @@ class GUI:
         execute les deux fonctions précédentes
         """
         self.clear_screen()
-        self.print_ascii("ressources/title.txt")
+        self.print_ascii("ressources/menu/title.txt")

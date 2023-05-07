@@ -6,7 +6,7 @@ class WORD:
         """
         prend la difficulté du mot en tant qu'argument et retourne un mot de words.json.
         """
-        with open("ressources/words.json", "r") as f:
+        with open("ressources/data/words.json", "r") as f:
             words = json.load(f)
 
         word_range = words[difficulte]

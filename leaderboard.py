@@ -2,14 +2,14 @@ import json
 
 class LEADERBOARD:
     def __init__(self):
-        with open(f"ressources/leaderboard.json", "r") as f:
+        with open(f"ressources/data/leaderboard.json", "r") as f:
             self.board = json.load(f)
 
     def _dump_json(self):
         """
         sauvegarde le leaderboard dans leaderboard.json.
         """
-        with open(f"ressources/leaderboard.json", "w") as f:
+        with open(f"ressources/data/leaderboard.json", "w") as f:
             json.dump(self.board, f, indent=4)
 
     def add_scoreboard(self, score, name):

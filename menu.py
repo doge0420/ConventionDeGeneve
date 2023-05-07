@@ -16,7 +16,7 @@ class MENU(GUI):
         self.clear_screen()
         
         # ascii
-        self.print_ascii("ressources/title.txt")
+        self.print_ascii("ressources/menu/title.txt")
 
         # ask pseudo
         self._ask_pseudo()
@@ -113,7 +113,7 @@ class MENU(GUI):
 
     def _help(self):
         self.refresh_screen_menu()
-        self.print_ascii("ressources/help.txt")
+        self.print_ascii("ressources/menu/help.txt")
         input("\nAppuyez sur entrer pour continuer...")
 
     def _show_leaderboard(self):

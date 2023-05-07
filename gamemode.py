@@ -31,14 +31,14 @@ class GAMEMODE(GUI):
         """
         affiche l'ecran de victoire.
         """   
-        self.print_ascii("ressources/win.txt")
+        self.print_ascii("ressources/end_screen/win.txt")
         
     def loose_normal(self):
         """
         affiche l'ecran de fin quand le joueur perd.
         """
         self._init_end_screen()
-        self.print_ascii("ressources/lose.txt")
+        self.print_ascii("ressources/end_screen/lose.txt")
         
         print(f"\nLe mot etait : {''.join(self.word_list)}")
         input("\nAppuyez sur entrer pour continuer...")
