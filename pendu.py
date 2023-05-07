@@ -44,14 +44,14 @@ class PENDU(MENU):
 
                     # loose ou pendu
                     if len(self.bad_guess) > 11:
-                        self._init_end_screen()
-                        self.gamemode.loose_normal()
-                    elif self.choice["mode_incredible"]:
-                        self._init_end_screen()
-                        self.gamemode.pendu_incredible(self.bad_guess)
-                        self.gamemode.loose_normal()
+                        self._loose_screen()
+                        if self.choice["mode_incredible"]:
+                            self.gamemode.pendu_incredible(self.bad_guess)
                     else:
-                        self.gamemode.pendu_normal(self.bad_guess)
+                        if self.choice["mode_incredible"]:
+                            self.gamemode.pendu_incredible(self.bad_guess)
+                        else:
+                            self.gamemode.pendu_normal(self.bad_guess)
             else:
                 print("Veuillez entrez UNE LETTRE.")
 
@@ -132,6 +132,17 @@ class PENDU(MENU):
         input("\nAppuyez sur entrer pour continuer...")
 
         self.leaderboard.add_scoreboard(score, self.choice["pseudo"])
+
+    def _loose_screen(self):
+        """
+        affiche l'ecran de fin quand le joueur perd.
+        """
+        self._init_end_screen()
+        
+        self.print_ascii("ressources/end_screen/lose.txt")
+        
+        print(f"\nLe mot etait : {''.join(self.word_list)}")
+        input("\nAppuyez sur entrer pour continuer...")
 
 if __name__ == "__main__":
     while True:
