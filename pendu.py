@@ -8,7 +8,6 @@ class PENDU(MENU):
     def __init__(self):
         super().__init__()
 
-        # self.LEAST_USED_LETTERS = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
         self.run = True
         self.guesses = []
         self.bad_guess = []

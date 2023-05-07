@@ -81,7 +81,7 @@ class MENU(GUI):
         """
         self.refresh_screen_menu()
         
-        setting = input("1.NOMBRE DE JOUEURS ([1])([2]) \n2.DIFFICULTE ([1])([2])([3]) \n3.MODE INCREDIBLE ([n])([y])\n4.ARRIERE\n\nChoix du reglage : ")
+        setting = input("1.NOMBRE DE JOUEURS ([1])([2]) (ne fonctionne pas :( ) \n2.DIFFICULTE ([1])([2])([3]) \n3.MODE INCREDIBLE ([n])([y])\n4.ARRIERE\n\nChoix du reglage : ")
 
         # NOMBRE DE JOUEURS
         if setting == "1":

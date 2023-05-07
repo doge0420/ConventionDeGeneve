@@ -30,6 +30,8 @@ class WORD:
         calcule la difficulté du mot.
         difficulté = longueur du mot + le nombre de lettres peu communes dedans
         """
+        self.LEAST_USED_LETTERS = ['w', 'k', 'x', 'y', 'z', 'j', 'q', 'v', 'f', 'h']
+        
         lenght = len(word)
 
         bonus = 0
