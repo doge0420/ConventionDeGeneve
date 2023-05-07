@@ -2,14 +2,20 @@ import json
 
 class LEADERBOARD:
     def __init__(self):
-        with open(f"ressources/leaderboard.json", "r") as f:
+        with open(f"ressources/data/leaderboard.json", "r") as f:
             self.board = json.load(f)
 
     def _dump_json(self):
-        with open(f"ressources/leaderboard.json", "w") as f:
+        """
+        sauvegarde le leaderboard dans leaderboard.json.
+        """
+        with open(f"ressources/data/leaderboard.json", "w") as f:
             json.dump(self.board, f, indent=4)
 
     def add_scoreboard(self, score, name):
+        """
+        ajoute un score au leaderboard.
+        """
         if name in self.board.keys():
             if self.board[name] < score:
                 self.board[name] = score
@@ -21,7 +27,9 @@ class LEADERBOARD:
             self._dump_json()
 
     def show_scoreboard(self):
-        # trie le leaderboard par score
+        """
+        affiche le leaderboard dans le terminal.
+        """
         dict_sort = dict(sorted(self.board.items(), key=lambda x : -x[1]))
 
         for i, name in enumerate(dict_sort.keys()):
