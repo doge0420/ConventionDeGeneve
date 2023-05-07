@@ -42,9 +42,12 @@ class PENDU(MENU):
                     
                     print("\n\nMauvaise lettre :(")
 
+                    # loose ou pendu
                     if len(self.bad_guess) > 11:
+                        self._init_end_screen()
                         self.gamemode.loose_normal()
                     elif self.choice["mode_incredible"]:
+                        self._init_end_screen()
                         self.gamemode.pendu_incredible(self.bad_guess)
                         self.gamemode.loose_normal()
                     else:

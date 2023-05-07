@@ -37,7 +37,6 @@ class GAMEMODE(GUI):
         """
         affiche l'ecran de fin quand le joueur perd.
         """
-        self._init_end_screen()
         self.print_ascii("ressources/end_screen/lose.txt")
         
         print(f"\nLe mot etait : {''.join(self.word_list)}")

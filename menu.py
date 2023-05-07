@@ -112,11 +112,17 @@ class MENU(GUI):
             self._get_choice()
 
     def _help(self):
+        """
+        affiche le fichier help.txt, qui explique comment le jeu marche.
+        """
         self.refresh_screen_menu()
         self.print_ascii("ressources/menu/help.txt")
         input("\nAppuyez sur entrer pour continuer...")
 
     def _show_leaderboard(self):
+        """
+        affiche le leaderboard.
+        """
         self.refresh_screen_menu()
         self.leaderboard.show_scoreboard()
         input("\nAppuyez sur entrer pour continuer...")
